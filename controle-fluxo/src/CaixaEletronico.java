@@ -12,6 +12,5 @@ public class CaixaEletronico {
         else
         System.out.println("Saldo insuficiente " + "R$" + saldo);
 
-
     }
 }
