@@ -1,11 +1,16 @@
+import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Case1 {
-    public static void main(String[] args) {
+public class Processoseletivo {
+    public static void main(String[] args)  {
         Scanner scanner = new Scanner(System.in);
 
-        selecaoCandidatos();
+        String [] candidatos = {"HENRIQUE" , "ANA", "LETICIA", "JULIA", "SOPHIA"};
+        for(String candidato: candidatos){
+            entrandoEmContato(candidato);
+        }
+
         // Vamos imaginar que em um processo seletivo existe o valor base
         // salarial de R$ 2.000,00 e o salário pretendido pelo candidato. Vamos elaborar
         // um controle de fluxo onde:
@@ -28,7 +33,49 @@ public class Case1 {
         // analisarCandidato(2300.0);
         // analisarCandidato(2000.0);
 
+        
     }
+
+    static void entrandoEmContato(String candidato) {
+        int tentativasRealizadas = 1;
+        boolean continuarTentando = true;
+        boolean atendeu=false;
+        do {
+            atendeu = atender();
+            continuarTentando = !atendeu;
+            if(continuarTentando)
+                    tentativasRealizadas++;
+            else
+                    System.out.println("Contato Realizado com Sucesso");
+
+
+        }while(continuarTentando && tentativasRealizadas < 3);
+
+        if(atendeu)
+            System.out.println("Conseguimos contato com " + candidato + " na " + tentativasRealizadas + " Tentativa");
+        else
+            System.out.println("Não conseguimos contato com o " + candidato + ", número máximo de tentativas " + tentativasRealizadas + " Realizada");
+    }
+
+    // método auxiliar
+    static boolean atender() {
+        return new Random().nextInt(3)==1;
+    }
+
+    static void imprimirCandidatos() {
+        String [] candidatos = {"HENRIQUE" , "ANA", "LETICIA", "JULIA", "SOPHIA"};
+        System.out.println("Imprimindo a lista de candidatos, informando o indice do elemento ");
+        for (int indice = 0; indice < candidatos.length;indice++) {
+            System.out.println("O candidato de n° " + (indice+1) + " é o " + candidatos[indice]);
+        }
+
+        System.out.println("Forma abreviada de interação for each");
+
+        for(String candidato: candidatos) {
+            System.out.println("O candidato selecionado foi " + candidato);
+        }
+    }
+
     static void selecaoCandidatos(){
         // Array com a lista de candidatos
 
